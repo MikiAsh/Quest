@@ -33,6 +33,8 @@ export class DataService {
   }
 
   getFlights(): Observable<Flight[]> {
+    if (!this.selectedWorker) return;
+    
     const route = `workers/${this.selectedWorker}`;
     const url = new URL(route, this.baseUrl).toString();
     return this.http.get<Flight[]>(url);
