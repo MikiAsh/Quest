@@ -1,0 +1,15 @@
+#app-grid {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 0.8fr 2fr 1fr;
+  & > #left {
+    border: 2px solid red;
+  }
+  & > #main {
+    border: 2px solid purple;
+  }
+  & > #right {
+    border: 2px solid green;
+  }
+}
