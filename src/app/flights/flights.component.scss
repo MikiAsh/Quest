@@ -1,3 +1,15 @@
+@import 'variables.scss';
+
 .flights-table {
   width: 100%;
+  .mat-row {
+    cursor: pointer;
+    &:hover {
+      background-color: $color-table-hover;
+    }
+  }
+
+  .highlight {
+    background-color: $color-table-hover;
+  }
 }

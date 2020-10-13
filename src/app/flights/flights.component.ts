@@ -12,12 +12,18 @@ export class FlightsComponent implements OnInit, OnDestroy {
   flights$: Observable<Flight[]>;
   sub: Subscription;
   displayedColumns: string[] = ['flightNumber', 'origin', 'originDate', 'destination', 'destinationDate'];
+  selectedFlight: Flight;
+
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.sub = this.dataService.workerSelected$.subscribe(workerId => {
       this.flights$ = this.dataService.getFlights();
     });
+  }
+
+  selectFlight(rowData): void {
+    this.selectedFlight = rowData;
   }
 
   ngOnDestroy() {
