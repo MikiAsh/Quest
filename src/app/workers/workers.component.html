@@ -1,0 +1,7 @@
+<h2>Workers</h2> 
+
+<div class="worker-list">
+  <div *ngFor="let worker of workers$ | async">
+    {{ worker.name }}
+  </div>
+</div>
