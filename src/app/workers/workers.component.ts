@@ -6,28 +6,25 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-workers',
   templateUrl: './workers.component.html',
-  styleUrls: ['./workers.component.scss']
+  styleUrls: ['./workers.component.scss'],
 })
 export class WorkersComponent implements OnInit {
-
   workers$: Observable<Worker[]>;
-  selectedWorker: number;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.workers$ = this.dataService.getWorkers();
   }
 
   isSelectedWorker(workerId, first): boolean {
-    if (!this.selectedWorker && first) {
+    if (!this.dataService.selectedWorker && first) {
       this.selectWorker(workerId);
     }
-    return this.selectedWorker === workerId;
+    return this.dataService.selectedWorker === workerId;
   }
 
   selectWorker(id: number): void {
-    this.selectedWorker = id;
+    this.dataService.selectedWorker = id;
   }
-
 }
