@@ -19,8 +19,14 @@ export class WorkersComponent implements OnInit {
     this.workers$ = this.dataService.getWorkers();
   }
 
-  selectWorker(id: number) {
-    console.log('id', id);
+  isSelectedWorker(workerId, first): boolean {
+    if (!this.selectedWorker && first) {
+      this.selectWorker(workerId);
+    }
+    return this.selectedWorker === workerId;
+  }
+
+  selectWorker(id: number): void {
     this.selectedWorker = id;
   }
 

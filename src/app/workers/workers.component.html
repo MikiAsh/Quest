@@ -5,7 +5,7 @@
     *ngFor="let worker of workers$ | async; let first = first"
     (click)="selectWorker(worker.id)"
     class="worker"
-    [class.selected]="selectedWorker === worker.id || first && !selectedWorker"
+    [class.selected]="isSelectedWorker(worker.id, first)"
   >
     {{ worker.name }}
   </li>
