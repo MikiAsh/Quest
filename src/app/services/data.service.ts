@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Worker } from '../interfaces/worker';
 import { Flight } from '../interfaces/flight';
 
@@ -11,7 +11,8 @@ import { Flight } from '../interfaces/flight';
 export class DataService {
   private baseUrl: string;
   private _selectedWorker: number;
-  workerSelected$: BehaviorSubject<number> = new BehaviorSubject(undefined);
+  private _selectedFlight: Flight;
+  workerSelected$ = new Subject();
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseUrl;
@@ -19,11 +20,19 @@ export class DataService {
 
   public set selectedWorker(v: number) {
     this._selectedWorker = v;
-    this.workerSelected$.next(v);
+    this.workerSelected$.next();
   }
 
   public get selectedWorker(): number {
     return this._selectedWorker;
+  }
+
+  public set selectedFlight(v: Flight) {
+    this._selectedFlight = v;
+  }
+
+  public get selectedFlight(): Flight {
+    return this._selectedFlight;
   }
 
   getWorkers(): Observable<Worker[]> {
@@ -34,7 +43,7 @@ export class DataService {
 
   getFlights(): Observable<Flight[]> {
     if (!this.selectedWorker) return;
-    
+
     const route = `workers/${this.selectedWorker}`;
     const url = new URL(route, this.baseUrl).toString();
     return this.http.get<Flight[]>(url);

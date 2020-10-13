@@ -29,5 +29,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let rowData; columns: displayedColumns;" [ngClass]="{'highlight': selectedFlight === rowData}" (click)="selectFlight(rowData)"></tr>
+  <tr mat-row *matRowDef="let rowData; columns: displayedColumns;" [ngClass]="{'highlight': dataService.selectedFlight === rowData}" (click)="selectFlight(rowData)"></tr>
 </table>

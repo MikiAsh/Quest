@@ -13,20 +13,19 @@ export class FlightsComponent implements OnInit, OnDestroy {
   flights$: Observable<Flight[]>;
   sub: Subscription;
   displayedColumns: string[] = ['flightNumber', 'origin', 'originDate', 'destination', 'destinationDate'];
-  selectedFlight: Flight;
 
-  constructor(private dataService: DataService) {}
+  constructor(public dataService: DataService) {}
 
   ngOnInit(): void {
     const minute = 1000 * 60;
     this.sub = timer(0, minute).pipe(mergeMap(() =>  this.dataService.workerSelected$ ))
-    .subscribe(workerId => { // TODO: no need for workerId
+    .subscribe(() => {
       this.flights$ = this.dataService.getFlights();
     });
   }
 
-  selectFlight(rowData): void {
-    this.selectedFlight = rowData;
+  selectFlight(rowData: Flight): void {
+    this.dataService.selectedFlight = rowData;
   }
 
   ngOnDestroy() {
