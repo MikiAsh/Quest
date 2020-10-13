@@ -1,7 +1,12 @@
-<h2>Workers</h2> 
+<h2>Workers</h2>
 
-<div class="worker-list">
-  <div *ngFor="let worker of workers$ | async">
+<ul class="worker-list">
+  <li
+    *ngFor="let worker of workers$ | async; let first = first"
+    (click)="selectWorker(worker.id)"
+    class="worker"
+    [class.selected]="selectedWorker === worker.id || first && !selectedWorker"
+  >
     {{ worker.name }}
-  </div>
-</div>
+  </li>
+</ul>

@@ -9,7 +9,14 @@ h2 {
 }
 
 .worker-list {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  list-style-type: none;
+  padding: 0;
+  .worker {
+    margin: 12px 0;
+    padding-left: 20px;
+    cursor: pointer;
+  }
+  .selected {
+    background-color: lightgray;
+  }
 }

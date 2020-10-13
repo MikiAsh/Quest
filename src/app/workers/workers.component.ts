@@ -11,11 +11,17 @@ import { Observable } from 'rxjs';
 export class WorkersComponent implements OnInit {
 
   workers$: Observable<Worker[]>;
+  selectedWorker: number;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.workers$ = this.dataService.getWorkers();
+  }
+
+  selectWorker(id: number) {
+    console.log('id', id);
+    this.selectedWorker = id;
   }
 
 }
