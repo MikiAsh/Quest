@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { WorkersComponent } from './workers/workers.component';
+import { FlightsComponent } from './flights/flights.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorkersComponent
+    WorkersComponent,
+    FlightsComponent
   ],
   imports: [
     BrowserModule,
