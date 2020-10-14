@@ -1,0 +1,15 @@
+@import 'variables.scss';
+
+.details-row {
+  display: flex;
+  justify-content: flex-start;
+  background-color: $color-table;
+  color: $color-text;
+  border-bottom: 1px solid $color-border;
+  padding: 15px;
+  .label {
+    width: 250px;
+    color: $color-label;
+    font-size: 12px;
+  }
+}
