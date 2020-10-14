@@ -1,3 +1,5 @@
+@import 'variables.scss';
+
 h2 {
   margin: 0;
   height: 100px;
@@ -11,13 +13,18 @@ h2 {
 .worker-list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  background-color: $color-table;
+  color: $color-text;
   .worker {
-    margin: 12px 0;
-    padding-left: 20px;
+    padding: 10px 20px;
     cursor: pointer;
+    border-bottom: 1px solid $color-border;
+    &:hover {
+      background-color: $color-table-hover;
+    }
   }
   .selected {
-    background-color: lightgray;
-    border: 1px solid black;
+    background-color: $color-table-hover;
   }
 }
