@@ -10,13 +10,15 @@ import { MatTableModule } from '@angular/material/table';
 import { WorkersComponent } from './workers/workers.component';
 import { FlightsComponent } from './flights/flights.component';
 import { FlightDetailsComponent } from './flight-details/flight-details.component';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     WorkersComponent,
     FlightsComponent,
-    FlightDetailsComponent
+    FlightDetailsComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
