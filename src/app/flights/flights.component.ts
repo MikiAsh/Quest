@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Flight } from '../interfaces/flight';
 import { Observable, Subscription, timer } from 'rxjs';
@@ -17,9 +17,7 @@ export class FlightsComponent implements OnInit, OnDestroy {
   constructor(public dataService: DataService) {}
 
   ngOnInit(): void {
-    const minute = 1000 * 60;
-    this.sub = timer(0, minute).pipe(mergeMap(() =>  this.dataService.workerSelected$ ))
-    .subscribe(() => {
+    this.sub = this.dataService.workerSelected$.subscribe(() => {
       this.flights$ = this.dataService.getFlights();
       // auto-select first row
       this.flights$.pipe(map(array => array[0])).subscribe(firstFlightData => {
