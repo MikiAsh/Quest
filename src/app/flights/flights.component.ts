@@ -27,6 +27,7 @@ export class FlightsComponent implements OnInit, OnDestroy {
 
   selectFlight(rowData: Flight): void {
     this.dataService.selectedFlight = rowData;
+    this.dataService.resetTimer();
   }
 
   isSelectedFlight(rowData: Flight): boolean {

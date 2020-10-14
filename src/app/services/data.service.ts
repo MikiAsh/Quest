@@ -12,10 +12,12 @@ export class DataService {
   private baseUrl: string;
   private _selectedWorker: number;
   private _selectedFlight: Flight;
+  private timer;
   workerSelected$ = new Subject();
 
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseUrl;
+    this.autoRefresh();
   }
 
   public set selectedWorker(v: number) {
@@ -33,6 +35,20 @@ export class DataService {
 
   public get selectedFlight(): Flight {
     return this._selectedFlight;
+  }
+
+  autoRefresh(): void {
+    const minute = 1000 * 60;
+    this.timer = setInterval(() => {
+      this.getFlights().toPromise().then( flights => {
+        this.selectedFlight = flights.find(flight => flight.num === this.selectedFlight.num);
+      });
+    }, minute);
+  }
+
+  resetTimer(): void {
+    clearInterval(this.timer);
+    this.autoRefresh();
   }
 
   getWorkers(): Observable<Worker[]> {
