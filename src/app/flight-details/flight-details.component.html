@@ -1,16 +1,18 @@
-<div class="details-row">
-  <div class="label">Plane Number</div>
-  <div>{{ dataService.selectedFlight.num }}</div>
-</div>
-<div class="details-row">
-  <div class="label">Duration</div>
-  <div>{{ dataService.selectedFlight.duration }}</div>
-</div>
-<div class="details-row">
-  <div class="label">Origin Gate</div>
-  <div>{{ dataService.selectedFlight.from_gate }}</div>
-</div>
-<div class="details-row">
-  <div class="label">Destination Gate</div>
-  <div>{{ dataService.selectedFlight.to_gate }}</div>
-</div>
+<ng-container *ngIf="dataService.selectedFlight">
+  <div class="details-row">
+    <div class="label">Plane Number</div>
+    <div>{{ dataService.selectedFlight.num }}</div>
+  </div>
+  <div class="details-row">
+    <div class="label">Duration</div>
+    <div>{{ dataService.selectedFlight.duration }}</div>
+  </div>
+  <div class="details-row">
+    <div class="label">Origin Gate</div>
+    <div>{{ dataService.selectedFlight.from_gate }}</div>
+  </div>
+  <div class="details-row">
+    <div class="label">Destination Gate</div>
+    <div>{{ dataService.selectedFlight.to_gate }}</div>
+  </div>
+</ng-container>
