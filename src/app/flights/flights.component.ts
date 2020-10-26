@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Flight } from '../interfaces/flight';
 import { Observable, Subscription, timer } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
+import { mergeMap, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-flights',
@@ -16,13 +16,13 @@ export class FlightsComponent implements OnInit, OnDestroy {
 
   constructor(public dataService: DataService) {}
 
-  ngOnInit(): void {
-    this.sub = this.dataService.workerSelected$.subscribe(() => {
+  ngOnInit(): void { // TODO: use switchMap instead of nested subscriptions
+    this.sub = this.dataService.workerSelected$.pipe(switchMap( () => {
       this.flights$ = this.dataService.getFlights();
       // auto-select first row
-      this.flights$.pipe(map(array => array[0])).subscribe(firstFlightData => {
-        this.selectFlight(firstFlightData)})
-    });
+      return this.flights$.pipe(map(array => array[0]))
+    })).subscribe(firstFlightData => { this.selectFlight(firstFlightData); }
+    );
   }
 
   selectFlight(rowData: Flight): void {
